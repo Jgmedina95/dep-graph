@@ -12,6 +12,8 @@ That was the problem I wanted to solve here: turn a raw set of Composio tools in
 
 I built this project from scratch in about two hours. In practice it took a little longer wall-clock time because I had to pause in the middle to go grab groceries and handle real life for a bit, but the actual build was still a compact sprint from zero to working graphs.
 
+The code for the project is here: [github.com/Jgmedina95/dep-graph](https://github.com/Jgmedina95/dep-graph).
+
 ## The Goal
 
 I wanted a system that could:
