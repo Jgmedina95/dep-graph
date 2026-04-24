@@ -2,6 +2,8 @@
 
 This repo builds dependency graphs for tool systems.
 
+This project was originally built for a pre-interview question from Composio. I thought it was a genuinely cool problem, so I pushed it further than the prompt required. That said, if your actual job is designing and building agents, this implementation can and probably should be streamlined further before you treat it as production workflow.
+
 The core idea is:
 
 1. Fetch or load a raw tool dump.
