@@ -1,0 +1,140 @@
+[
+  {
+    "slug": "GOOGLESUPER_LIST_THREADS",
+    "name": "List threads",
+    "description": "Retrieves a list of email threads from a Gmail account.",
+    "tags": ["gmail", "messages"],
+    "is_deprecated": false,
+    "operation_type": "list",
+    "primary_entity": "thread",
+    "domain": "gmail",
+    "required_inputs": [],
+    "optional_inputs": [
+      {
+        "name": "user_id",
+        "canonical_name": "user_id",
+        "entity": "user",
+        "kind": "identifier",
+        "required": false,
+        "description": "Email address of the account or 'me'.",
+        "input_path": "$.input_parameters.properties.user_id",
+        "classification": "either"
+      },
+      {
+        "name": "query",
+        "canonical_name": "query",
+        "entity": "thread",
+        "kind": "unknown",
+        "required": false,
+        "description": "Gmail search query string.",
+        "input_path": "$.input_parameters.properties.query",
+        "classification": "user_input"
+      }
+    ],
+    "output_fields": [
+      {
+        "raw_name": "id",
+        "canonical_name": "thread_id",
+        "entity": "thread",
+        "kind": "identifier",
+        "description": "Thread identifier.",
+        "path": "$.data.threads[].id"
+      },
+      {
+        "raw_name": "nextPageToken",
+        "canonical_name": "next_page_token",
+        "entity": "thread",
+        "kind": "token",
+        "description": "Token for the next page of results.",
+        "path": "$.data.nextPageToken"
+      }
+    ]
+  },
+  {
+    "slug": "GOOGLESUPER_DELETE_THREAD",
+    "name": "Delete thread",
+    "description": "Delete a Gmail thread permanently.",
+    "tags": ["gmail"],
+    "is_deprecated": false,
+    "operation_type": "delete",
+    "primary_entity": "thread",
+    "domain": "gmail",
+    "required_inputs": [
+      {
+        "name": "id",
+        "canonical_name": "thread_id",
+        "entity": "thread",
+        "kind": "identifier",
+        "required": true,
+        "description": "Thread identifier.",
+        "input_path": "$.input_parameters.properties.id",
+        "classification": "tool_derived"
+      }
+    ],
+    "optional_inputs": [
+      {
+        "name": "user_id",
+        "canonical_name": "user_id",
+        "entity": "user",
+        "kind": "identifier",
+        "required": false,
+        "description": "Email address of the account or 'me'.",
+        "input_path": "$.input_parameters.properties.user_id",
+        "classification": "either"
+      }
+    ],
+    "output_fields": []
+  },
+  {
+    "slug": "GITHUB_GET_ISSUE",
+    "name": "Get issue",
+    "description": "Retrieve a GitHub issue.",
+    "tags": ["github", "issues"],
+    "is_deprecated": false,
+    "operation_type": "get",
+    "primary_entity": "issue",
+    "domain": "github",
+    "required_inputs": [
+      {
+        "name": "issue_number",
+        "canonical_name": "issue_number",
+        "entity": "issue",
+        "kind": "identifier",
+        "required": true,
+        "description": "Issue number identifier.",
+        "input_path": "$.input_parameters.properties.issue_number",
+        "classification": "either"
+      }
+    ],
+    "optional_inputs": [
+      {
+        "name": "owner",
+        "canonical_name": "owner",
+        "entity": "repository",
+        "kind": "unknown",
+        "required": false,
+        "description": "Repository owner login.",
+        "input_path": "$.input_parameters.properties.owner",
+        "classification": "user_input"
+      }
+    ],
+    "output_fields": [
+      {
+        "raw_name": "id",
+        "canonical_name": "issue_id",
+        "entity": "issue",
+        "kind": "identifier",
+        "description": "GitHub internal issue identifier.",
+        "path": "$.data.id"
+      },
+      {
+        "raw_name": "number",
+        "canonical_name": "issue_number",
+        "entity": "issue",
+        "kind": "identifier",
+        "description": "Issue number.",
+        "path": "$.data.number"
+      }
+    ]
+  }
+]

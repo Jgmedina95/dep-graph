@@ -1,0 +1,164 @@
+[
+  {
+    "slug": "GOOGLESUPER_LIST_THREADS",
+    "name": "List threads",
+    "description": "Retrieves a list of email threads from a Gmail account, identified by `user_id` (email address or 'me'), supporting filtering and pagination. Spam and trash are excluded by default unless explicitly targeted via `label:spam` or `label:trash` in the query.",
+    "tags": ["gmail", "messages", "readOnlyHint"],
+    "is_deprecated": false,
+    "input_parameters": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "description": "Email address of the account, or 'me' to indicate the currently authenticated user."
+        },
+        "query": {
+          "type": "string",
+          "description": "Gmail search query string used to filter threads."
+        },
+        "page_token": {
+          "type": "string",
+          "description": "Token used to retrieve the next page of results."
+        }
+      }
+    },
+    "output_parameters": {
+      "type": "object",
+      "title": "ListThreadsResponseWrapper",
+      "properties": {
+        "data": {
+          "$ref": "#/$defs/ListThreadsResponse"
+        },
+        "error": {
+          "type": "string"
+        },
+        "successful": {
+          "type": "boolean"
+        }
+      },
+      "$defs": {
+        "ListThreadsResponse": {
+          "type": "object",
+          "properties": {
+            "threads": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Thread"
+              }
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "Token for the next page of results."
+            }
+          }
+        },
+        "Thread": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Thread identifier."
+            },
+            "snippet": {
+              "type": "string",
+              "description": "Short summary of the thread."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "slug": "GOOGLESUPER_DELETE_THREAD",
+    "name": "Delete thread",
+    "description": "Tool to immediately and permanently delete a specified thread and all its messages. This operation cannot be undone.",
+    "tags": ["gmail", "destructiveHint"],
+    "is_deprecated": false,
+    "input_parameters": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Thread identifier."
+        },
+        "user_id": {
+          "type": "string",
+          "description": "Email address of the account, or 'me' to indicate the currently authenticated user."
+        }
+      }
+    },
+    "output_parameters": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean",
+              "description": "Whether the delete succeeded."
+            }
+          }
+        },
+        "error": {
+          "type": "string"
+        },
+        "successful": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  {
+    "slug": "GITHUB_GET_ISSUE",
+    "name": "Get issue",
+    "description": "Retrieve a GitHub issue by owner, repository, and issue number.",
+    "tags": ["github", "issues", "readOnlyHint"],
+    "is_deprecated": false,
+    "input_parameters": {
+      "type": "object",
+      "required": ["owner", "repo", "issue_number"],
+      "properties": {
+        "owner": {
+          "type": "string",
+          "description": "Repository owner login."
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository name."
+        },
+        "issue_number": {
+          "type": "integer",
+          "description": "Issue number identifier."
+        }
+      }
+    },
+    "output_parameters": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "GitHub internal issue identifier."
+            },
+            "number": {
+              "type": "integer",
+              "description": "Issue number."
+            },
+            "title": {
+              "type": "string",
+              "description": "Issue title."
+            },
+            "html_url": {
+              "type": "string",
+              "description": "Web URL for the issue."
+            }
+          }
+        }
+      }
+    }
+  }
+]
